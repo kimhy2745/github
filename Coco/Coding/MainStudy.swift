@@ -7,10 +7,9 @@
 
 import SwiftUI
 
-struct StudyView: View {
+struct MainStudyView: View {
     
     @State private var selectedTab = 0 // 현재 선택된 페이지
-    @State private var currentLanguage = "C 언어" // 현재 학습 중인 언어
     @State private var currentChapter = "03 변수와 데이터 타입" // 현재 진행중인 챕터
     
     let total: Double = 100  // 최대 진행도
@@ -24,14 +23,14 @@ struct StudyView: View {
                 
                 Text("현재 학습중인 언어")
                     .foregroundColor(.black)
-                    .padding(.top, 40)
+                    .padding(.top, 45)
                 
                 // TabView를 사용하여 슬라이딩 페이지 구현
                 TabView(selection: $selectedTab) {
                     // 첫 번째 탭
                     ZStack {
                         Rectangle()
-                            .fill(Color.gray.opacity(0.15))
+                            .fill(Color.gray.opacity(0.08))
                             .frame(width: 350, height: 150)
                             .cornerRadius(30)
                         HStack {
@@ -83,7 +82,7 @@ struct StudyView: View {
                     // 두 번째 탭
                     ZStack {
                         Rectangle()
-                            .fill(Color.gray.opacity(0.15))
+                            .fill(Color.gray.opacity(0.08))
                             .frame(width: 350, height: 150)
                             .cornerRadius(30)
                         HStack {
@@ -135,7 +134,7 @@ struct StudyView: View {
                     // 세 번째 탭
                     ZStack {
                         Rectangle()
-                            .fill(Color.gray.opacity(0.15))
+                            .fill(Color.gray.opacity(0.08))
                             .frame(width: 350, height: 150)
                             .cornerRadius(30)
                         HStack {
@@ -188,16 +187,25 @@ struct StudyView: View {
                 .frame(height: 200)
                 .padding(.horizontal, 20)
                 
-                // 페이지 인디케이터
-                HStack {
-                    ForEach(0..<3, id: \.self) { index in
-                        Circle()
-                            .fill(selectedTab == index ? Color(red: 133 / 255, green: 234 / 255, blue: 236 / 255) : Color.gray.opacity(0.5)) // 선택된 페이지 색상
-                            .frame(width: 10, height: 10)
-                            .padding(5)
-                            .onTapGesture {
-                                selectedTab = index // 해당 페이지로 이동
-                            }
+                
+                ZStack{
+                    
+                    Rectangle()
+                        .fill(Color.gray.opacity(0.15))
+                        .frame(width: 100, height: 25)
+                        .cornerRadius(30)
+                    
+                    // 페이지 인디케이터
+                    HStack {
+                        ForEach(0..<3, id: \.self) { index in
+                            Circle()
+                                .fill(selectedTab == index ? Color(red: 133 / 255, green: 234 / 255, blue: 236 / 255) : Color.gray.opacity(0.7)) // 선택된 페이지 색상
+                                .frame(width: 10, height: 10)
+                                .padding(5)
+                                .onTapGesture {
+                                    selectedTab = index // 해당 페이지로 이동
+                                }
+                        }
                     }
                 }
                 .padding(.bottom,10)
@@ -267,8 +275,8 @@ struct StudyView: View {
                     }
                 }
 
-          struct StudyView_Previews: PreviewProvider {
-              static var previews: some View {
-                  StudyView()
+struct MainStudyView_Previews: PreviewProvider {
+    static var previews: some View {
+        MainStudyView()
               }
           }

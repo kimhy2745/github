@@ -5,12 +5,15 @@ struct PrivacyPolicyView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
-        NavigationView {
+       // NavigationView {
             VStack {
                 ToplogoView()
+                    .offset(y:-30)
                 
                 Text("개인정보처리방침")
-                 
+                    .padding(.top, 10)
+                    .padding(.bottom,20)
+                
                 Spacer()
                 
                 ZStack {
@@ -18,7 +21,7 @@ struct PrivacyPolicyView: View {
                         .fill(Color(red: 133/255, green: 234/255, blue: 236/255).opacity(0.5))
                         .frame(width: 350, height: 550)
                         .cornerRadius(30)
-                        .padding(.top, 30)
+                        .padding(.top, 10)
                     
                     ScrollView {
                         VStack(alignment: .leading, spacing: 10) {
@@ -70,11 +73,11 @@ struct PrivacyPolicyView: View {
                 }
             }
             .padding(.bottom, 80)
-            
-        }
-        .navigationBarBackButtonHidden(true)
+            .accentColor(.black)
+     }
+     
     }
-}
+
 
 struct PrivacyPolicyView_Previews: PreviewProvider {
     static var previews: some View {

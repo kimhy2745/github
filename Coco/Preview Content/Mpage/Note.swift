@@ -7,21 +7,27 @@
 
 import SwiftUI
 
-struct Note: View {
+struct NoteView: View {
+    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     var body: some View {
-        VStack {
-            Text("오답노트 화면")
-                .font(.largeTitle)
-                .padding()
-            
-            // 마이 페이지의 내용 추가
+        NavigationView {
+            VStack {
+                Text("오답노트 화면")
+                    .font(.largeTitle)
+                    .padding()
+                
+                // 마이 페이지의 내용 추가
+            }
+            .navigationTitle("오답노트")
         }
-        .navigationTitle("오답노트")
+      //  .navigationBarBackButtonHidden(true)
     }
+    
 }
-
-struct Note_Previews: PreviewProvider {
+struct NoteView_Previews: PreviewProvider {
     static var previews: some View {
-        Note()
+        NoteView()
     }
 }

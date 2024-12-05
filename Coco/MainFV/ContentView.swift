@@ -62,7 +62,7 @@ struct ContentView: View {
                     }.offset(y:30)
                     
                     // 세 번째 버튼
-                    NavigationLink(destination: StudyView()) {
+                    NavigationLink(destination: MainStudyView()) {
                         Text("공부하러 가기")
                             .font(.title3)
                             .padding(.bottom, 150)
