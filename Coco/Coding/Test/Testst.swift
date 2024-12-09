@@ -1,6 +1,16 @@
+//
+//  TLangChoice.swift
+//  Coco
+//
+//  Created by 김하연 on 12/5/24.
+//
+
 import SwiftUI
 
 struct TeststView: View {
+    
+    @EnvironmentObject var appState: AppState
+    
     var body: some View {
         VStack {
             ZStack {
@@ -82,16 +92,29 @@ struct TeststView: View {
             
             // Play 버튼
             Button(action: {
-                // Play 버튼 액션
+                if !appState.conditionMet.contains(1) { // 중복 방지
+                    appState.conditionMet.append(1) // 조건 추가
+                }
+                if !appState.hasSentNoteNotification { // 알림이 한 번만 울리도록 체크
+                    pushNotification(
+                        title: "도전과제1 :",
+                        body: "과연 어떤 레벨을 받을까요?",
+                        seconds: 1,
+                        identifier: "testNotification"
+                    )
+                    appState.hasSentNoteNotification = true
+                }
             }) {
-                Text("테스트 시작하기")
-                    .fontWeight(.semibold)
-                    .foregroundColor(.black)
-                    .padding()
-                    .frame(width: 350, height: 50)
-                    .background(Color(red: 133 / 255, green: 234 / 255, blue: 236 / 255))
-                    .cornerRadius(30)
+                VStack {
+                    Text("테스트 시작하기")
+                        .font(.subheadline)
+                        .foregroundColor(.black)
+                }
             }
+            .frame(width: 350, height: 50) // 버튼 크기 조정
+            .background(Color(red: 133 / 255, green: 234 / 255, blue: 236 / 255))
+            .cornerRadius(30)
+
             .offset(y:-20)
         }
     }

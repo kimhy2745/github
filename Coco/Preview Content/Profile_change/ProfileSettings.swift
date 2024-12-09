@@ -4,6 +4,7 @@ struct ProfileSettingsView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     @State private var isShowingLogoutModal = false // 로그아웃 모달 표시 상태
     
+    
     var body: some View {
         VStack {
             
@@ -138,6 +139,8 @@ struct ProfileSettingsView: View {
         @Binding var isShowing: Bool
         @State private var navigateToFirstView = false // FirstView로 이동할 상태
         
+        @EnvironmentObject var appState: AppState // 전역 상태 사용
+        
         var body: some View {
             if isShowing {
                 ZStack {
@@ -169,17 +172,32 @@ struct ProfileSettingsView: View {
                             
                             Button(action: {
                                 isShowing = false // 모달 닫기
-                            }) {
+
+                                // 조건 추가
+                                if !appState.conditionMet.contains(6) { // 중복 방지
+                                    appState.conditionMet.append(6)
+                                }
+
+                                if !appState.hasSentLogoutNotification {
+                                    pushNotification(
+                                        title: "도전과제6 :",
+                                        body: "코다리와 계속 있어주다니, 감동이에요!",
+                                        seconds: 1,
+                                        identifier: "logoutNotification"
+                                    )
+                                    appState.hasSentLogoutNotification = true // 알림 상태 업데이트
+                                }
+                    }) {
                                 Text("아니오")
                                     .font(.footnote)
                                     .frame(width: 100, height: 40)
                                     .background(Color.gray.opacity(0.2))
                                     .foregroundColor(.black)
                                     .cornerRadius(30)
-                            }
-                        }
-                    }
-                    .frame(width: 280, height: 150)
+                                                    }
+                                                }
+                                            }
+                                          .frame(width: 280, height: 150)
                     .background(Color.white)
                     .cornerRadius(20)
                     .shadow(radius: 10)

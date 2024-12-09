@@ -2,7 +2,9 @@ import SwiftUI
 
 struct FirstView: View {
     
+    @EnvironmentObject var appState: AppState
     @State private var LoginModal = false // 로그인 모달 표시 상태
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -36,6 +38,18 @@ struct FirstView: View {
                 
                 // 시작하기 버튼
                 Button(action: {
+                    if !appState.conditionMet.contains(10) { // 중복 방지
+                        appState.conditionMet.append(10) // 조건 추가
+                    }
+                    if !appState.hasStartNotification {
+                        pushNotification(
+                            title: "도전과제10 :",
+                            body: "코다리에 오신걸 환영해요!",
+                            seconds: 1,
+                            identifier: "startNotification"
+                        )
+                        appState.hasStartNotification = true
+                    }
                     LoginModal = true
                 }) {
                     ZStack {
@@ -251,9 +265,9 @@ struct MembershipView: View {
 }
 
 //########################################################//
-
 struct FirstView_Previews: PreviewProvider {
     static var previews: some View {
         FirstView()
+            .environmentObject(AppState()) // AppState를 미리보기에서 제공
     }
 }
