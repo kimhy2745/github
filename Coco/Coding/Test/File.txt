@@ -1,0 +1,26 @@
+Button(action: {
+    if !appState.conditionMet.contains(1) { // 중복 방지
+        appState.conditionMet.append(1) // 조건 추가
+    }
+    if !appState.hasSentNoteNotification { // 알림이 한 번만 울리도록 체크
+        pushNotification(
+            title: "도전과제1 :",
+            body: "코다리에 오신걸 환영해요!",
+            seconds: 1,
+            identifier: "testNotification"
+        )
+        appState.hasSentNoteNotification = true
+    }
+}) {
+    VStack {
+        Image(systemName: "play.circle") // 아이콘 변경 가능
+            .resizable()
+            .frame(width: 50, height: 50)
+        Text("테스트 시작하기")
+            .fontWeight(.semibold)
+            .foregroundColor(.black)
+    }
+}
+.frame(width: 350, height: 50)
+.background(Color(red: 133 / 255, green: 234 / 255, blue: 236 / 255))
+.cornerRadius(30)
