@@ -58,24 +58,6 @@ struct MainStudyView: View {
                             let exp = total - value
                             
                             
-                            HStack {
-                                Text("학습률")
-                                    .padding(.top, 5)
-                                    .padding(.trailing, 50)
-                                    .font(.subheadline)
-                                Text("\(Int(exp))%")
-                                    .padding(.top, 5)
-                                    .font(.subheadline)
-                                    .foregroundColor(.green)
-                            }
-                           // .padding(.bottom,0)
-                            
-                            ProgressView(value: value, total: total)
-                                .progressViewStyle(LinearProgressViewStyle())
-                                .frame(width: 280)
-                                .padding(.top, 10)
-                                .padding(.bottom, 50)
-                            
                             Text("현재 진행중인 챕터")
                                 .font(.title3)
                                 .padding(.bottom, 10)
@@ -140,24 +122,7 @@ struct MainStudyView: View {
                             
                             let exp = total - value
                             
-                            
-                            HStack {
-                                Text("학습률")
-                                    .padding(.top, 5)
-                                    .padding(.trailing, 50)
-                                    .font(.subheadline)
-                                Text("\(Int(exp))%")
-                                    .padding(.top, 5)
-                                    .font(.subheadline)
-                                    .foregroundColor(.green)
-                            }
-                            
-                            ProgressView(value: value, total: total)
-                                .progressViewStyle(LinearProgressViewStyle())
-                                .frame(width: 280)
-                                .padding(.top, 10)
-                                .padding(.bottom, 50)
-                            
+                                                
                             Text("현재 진행중인 챕터")
                                 .font(.title3)
                                 .padding(.bottom, 10)
@@ -222,23 +187,6 @@ struct MainStudyView: View {
                             
                             let exp = total - value
                             
-                            
-                            HStack {
-                                Text("학습률")
-                                    .padding(.top, 5)
-                                    .padding(.trailing, 50)
-                                    .font(.subheadline)
-                                Text("\(Int(exp))%")
-                                    .padding(.top, 5)
-                                    .font(.subheadline)
-                                    .foregroundColor(.green)
-                            }
-                            
-                            ProgressView(value: value, total: total)
-                                .progressViewStyle(LinearProgressViewStyle())
-                                .frame(width: 280)
-                                .padding(.top, 10)
-                                .padding(.bottom, 50)
                             
                             Text("현재 진행중인 챕터")
                                 .font(.title3)

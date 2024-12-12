@@ -6,6 +6,7 @@
 import SwiftUI
 
 class AppState: ObservableObject {
+    
     @Published var conditionMet: [Int] = [] // 충족된 조건을 배열로 저장
     @Published var completedChallenges: [Bool] = Array(repeating: false, count: 10)
    

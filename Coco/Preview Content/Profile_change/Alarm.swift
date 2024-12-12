@@ -11,7 +11,7 @@
   페이스아이디 사용법 -> 프로젝트 왼쪽 제일 위에 보면 모든 폴더 제일 위에 (앱스토어 로고)(프로젝트이름) 들어가서 오른쪽에
    info -> 그냥 아무거나 (+) -> Privacy Face ID ~~ 선택 -> value 아무거나 적기
     시뮬 실행 시 상단바 feature -> faceid -> enrolled 선택 후 앱 실행 -> 페이스아이디 뜸! -> 이 상태에서 매칭 페이스로 바꾸면 넘어가짐!!
- ==> 근데 이게 계속 됐다가 안됐다가 하드라고요... 좀 더 봐야할 것 같아요
+
  */
 import SwiftUI
 import UserNotifications

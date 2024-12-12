@@ -21,61 +21,38 @@ struct LevelView: View {
             
             Text("난이도 설정")
                 .foregroundColor(.black)
-                .padding(.top, 40)
-                .padding(.bottom, 20)
-                .offset(y:40)
+                .padding(.top, 10)
+                .padding(.bottom, 1)
+                .offset(y:85)
             
-            Text("현재 난이도")
-                .font(.callout)
-                .padding(.top, 20)
-                .offset(y:30)
             
-            Image("Lco")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 130, height: 130)
-                .padding(.bottom, 20)
-            
-            ZStack {
-                Rectangle()
-                    .fill(Color(red: 133 / 255, green: 234 / 255, blue: 236 / 255).opacity(0.6))
-                    .frame(width: 150, height: 30)
-                    .cornerRadius(30)
+            VStack{
+                Text("현재 난이도")
+                    .font(.callout)
+                    .padding(.top, 70)
+                    .offset(y:30)
                 
-                Text("초급")
-                    .fontWeight(.bold)
-                    .foregroundColor(.black)
-            }
-            .offset(y:-45)
-            .padding(.bottom,-40)
-            
-            VStack(alignment: .leading, spacing: 10) {
+                Image("PImage")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100, height: 100)
+                    .padding(.top,40)
+                    .padding(.bottom, 60)
                 
-                let exp = total - value
-                
-                HStack {
-                    Text("난이도 진행도")
-                        .padding(.top, 5)
-                        .font(.subheadline)
-                        .padding(.leading,75)
-                    Spacer()
-                    Text("\(Int(exp))")
-                        .padding(.top, 5)
-                        .font(.subheadline)
-                        .padding(.trailing,115)
-                        .foregroundColor(.green)
+                ZStack {
+                    Rectangle()
+                        .fill(Color(red: 133 / 255, green: 234 / 255, blue: 236 / 255).opacity(0.6))
+                        .frame(width: 150, height: 30)
+                        .cornerRadius(30)
+                    
+                    Text("초급")
+                        .fontWeight(.bold)
+                        .foregroundColor(.black)
                 }
+                .offset(y:-45)
                 
-                // 경험치 진행 바
-                ProgressView(value: value, total: total)
-                    .progressViewStyle(LinearProgressViewStyle())
-                    .frame(width: 250)
-                    .padding(.top, 10)
-                    .padding(.horizontal,25)
-                    .padding(.leading,25)
             }
-            .padding(.horizontal, 20)
-            .padding(.bottom, 10)
+            .offset(y:10)
             
             ZStack {
                 Rectangle()

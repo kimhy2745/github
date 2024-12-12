@@ -16,7 +16,7 @@ struct LankView: View {
                 
             Text("나의 랭크")
                 .foregroundColor(.black)
-                .padding(.top, 20)
+                .padding(.top, 40)
                 .padding(.bottom, 10)
             
             // 프로필 이미지
@@ -32,12 +32,12 @@ struct LankView: View {
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
                     Text("Lv. 15")
-                        .font(.title2)
+                        .font(.title3)
                     //  .fontWeight(.bold)
                         .padding(.leading,60)
                     Spacer()
                     Text("골드")
-                        .font(.title2)
+                        .font(.title3)
                     //  .fontWeight(.bold)
                         .padding(.trailing,80)
                 }
@@ -48,21 +48,7 @@ struct LankView: View {
                     .frame(width: 300)
                     .padding(.top, 10)
                     .padding(.horizontal,25)
-                
-                let exp = total - value
-                
-                HStack {
-                    Text("다음 랭크까지 남은 EXP")
-                        .padding(.top, 5)
-                        .font(.subheadline)
-                        .padding(.leading,30)
-                    Spacer()
-                    Text("\(Int(exp))")
-                        .padding(.top, 5)
-                        .font(.subheadline)
-                        .padding(.trailing,90)
-                        .foregroundColor(.green)
-                }
+                    .padding(.bottom,40)
             }
             .padding(.horizontal, 20)
             //.padding(.bottom, 10)
