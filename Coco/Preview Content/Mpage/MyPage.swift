@@ -98,7 +98,11 @@ struct MyPageView: View {
                     if !appState.conditionMet.contains(5) { // 중복 방지
                         appState.conditionMet.append(5) // 조건 추가
                     }
-                    if !appState.hasSentNoteNotification {
+                    
+                    // UserDefaults에서 알림 허용 상태 확인
+                        let isNotificationEnabled = UserDefaults.standard.bool(forKey: "isNotificationEnabled")
+                        
+                    if isNotificationEnabled && !appState.hasSentNoteNotification {
                         pushNotification(
                             title: "도전과제5 :",
                             body: "오답노트로 열심히 복습해보자!",
@@ -129,7 +133,12 @@ struct MyPageView: View {
                     if !appState.conditionMet.contains(4) { // 중복 방지
                         appState.conditionMet.append(4) // 조건 추가
                     }
-                    if !appState.hasSentRankNotification {
+                    
+                    // UserDefaults에서 알림 허용 상태 확인
+                        let isNotificationEnabled = UserDefaults.standard.bool(forKey: "isNotificationEnabled")
+                        
+                    
+                    if isNotificationEnabled && !appState.hasSentRankNotification {
                         pushNotification(
                             title: "도전과제4 :",
                             body: "나의 랭크를 처음으로 확인했다!",
@@ -158,7 +167,11 @@ struct MyPageView: View {
                     if !appState.conditionMet.contains(3) { // 중복 방지
                         appState.conditionMet.append(3) // 조건 추가
                     }
-                    if !appState.hasSentLevelNotification {
+                    
+                    // UserDefaults에서 알림 허용 상태 확인
+                        let isNotificationEnabled = UserDefaults.standard.bool(forKey: "isNotificationEnabled")
+                    
+                    if isNotificationEnabled && !appState.hasSentLevelNotification {
                         pushNotification(
                             title: "도전과제3 :",
                             body: "난이도를 바꾸는건 정말 멋진 일이죠!",

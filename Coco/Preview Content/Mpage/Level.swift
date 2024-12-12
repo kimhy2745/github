@@ -5,7 +5,7 @@ struct LevelView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     let total: Double = 100  // 최대 진행도
-    let value: Double = 50   // 현재 진행도
+    let value: Double = 20   // 현재 진행도
     
     @State private var isBeginnerChecked = false
     @State private var isIntermediateChecked = false

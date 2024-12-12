@@ -177,8 +177,12 @@ struct ProfileSettingsView: View {
                                 if !appState.conditionMet.contains(6) { // 중복 방지
                                     appState.conditionMet.append(6)
                                 }
-
-                                if !appState.hasSentLogoutNotification {
+                                
+                                // UserDefaults에서 알림 허용 상태 확인
+                                    let isNotificationEnabled = UserDefaults.standard.bool(forKey: "isNotificationEnabled")
+                                    
+                                
+                                if isNotificationEnabled && !appState.hasSentLogoutNotification {
                                     pushNotification(
                                         title: "도전과제6 :",
                                         body: "코다리와 계속 있어주다니, 감동이에요!",

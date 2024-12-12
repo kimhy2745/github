@@ -4,6 +4,7 @@ struct FirstView: View {
     
     @EnvironmentObject var appState: AppState
     @State private var LoginModal = false // 로그인 모달 표시 상태
+    @StateObject private var viewModel = LoginViewModel() // ViewModel 추가
     
     var body: some View {
         NavigationView {
@@ -41,6 +42,11 @@ struct FirstView: View {
                     if !appState.conditionMet.contains(10) { // 중복 방지
                         appState.conditionMet.append(10) // 조건 추가
                     }
+                    
+                    // UserDefaults에서 알림 허용 상태 확인
+                        let isNotificationEnabled = UserDefaults.standard.bool(forKey: "isNotificationEnabled")
+                        
+                    
                     if !appState.hasStartNotification {
                         pushNotification(
                             title: "도전과제10 :",
@@ -68,7 +74,7 @@ struct FirstView: View {
             .padding()
             .overlay(
                 // 로그아웃 모달
-                LoginView(isShowing: $LoginModal)
+                LoginView(isShowing: $LoginModal, viewModel: viewModel)
             )
             }.navigationBarBackButtonHidden(true)
         }
@@ -78,32 +84,33 @@ struct FirstView: View {
 //########################################################//
 
 struct LoginView: View {
-    
-    @State private var Membership = false // 회원가입 속성
     @Binding var isShowing: Bool
-    
+    @ObservedObject var viewModel: LoginViewModel // ViewModel 추가
+
+    @State private var Membership = false // 회원가입 속성
     @State private var password: String = ""
     @State private var id: String = ""
-    
+
     var body: some View {
         if isShowing {
-            
             ZStack {
                 Color.black.opacity(0.5) // 반투명 배경
-                    .frame(width: 420,height: 1500)
+                    .frame(width: 420, height: 1500)
                     .ignoresSafeArea()
+                
+
                 VStack {
                     Text("로그인")
                         .font(.system(size: 25, weight: .bold))
                         .foregroundColor(.black)
                         .padding(.bottom, 20)
                         .padding(.top, 10)
-                        .offset(y:20)
-                    
+                        .offset(y: 20)
+
                     VStack(alignment: .leading, spacing: 15) {
                         Text("아이디")
                             .padding(.leading, 40)
-                            .padding(.top,30)
+                            .padding(.top, 30)
                         TextField("아이디 입력", text: $id)
                             .padding()
                             .overlay(
@@ -112,8 +119,8 @@ struct LoginView: View {
                             )
                             .frame(width: 330)
                             .padding(.horizontal, 30.0)
-                            .padding(.bottom,10)
-                        
+                            .padding(.bottom, 10)
+
                         Text("비밀번호")
                             .padding(.leading, 40)
                         SecureField("비밀번호 입력", text: $password)
@@ -124,10 +131,9 @@ struct LoginView: View {
                             )
                             .frame(width: 330)
                             .padding(.horizontal, 30.0)
-                            .padding(.bottom,40)
-                        
+                            .padding(.bottom, 40)
                     }
-                    
+
                     // 로그인 버튼
                     NavigationLink(destination: ContentView()) {
                         ZStack {
@@ -135,15 +141,14 @@ struct LoginView: View {
                                 .fill(Color(red: 133 / 255, green: 234 / 255, blue: 236 / 255))
                                 .frame(width: 350, height: 60)
                                 .cornerRadius(30)
-                            
+
                             Text("로그인")
                                 .fontWeight(.bold)
                                 .foregroundColor(.black)
                         }
                     }
-                    
-                    .padding(.bottom,20)
-                    
+                    .padding(.bottom, 20)
+
                     Button(action: {
                         Membership = true
                     }) {
@@ -151,7 +156,7 @@ struct LoginView: View {
                             .fontWeight(.semibold)
                             .foregroundColor(.green)
                     }
-                    .padding(.bottom,50)
+                    .padding(.bottom, 50)
                 }
                 .frame(width: UIScreen.main.bounds.width, height: 500)
                 .background(Color.white)
@@ -162,15 +167,12 @@ struct LoginView: View {
                     MembershipView() // 비밀번호 변경 화면을 표시합니다.
                         .presentationDetents([.fraction(0.9), .fraction(0.9)]) // 가능한 크기 범위 설정
                         .presentationDragIndicator(.hidden) // 드래그 인디케이터 제거
-                    //.interactiveDismissDisabled() // 인터랙션 비활성화 (배경 터치 및 드래그로 닫기 비활성화)
-                    
-                      
                 }
-               
             }
         }
     }
 }
+
 
 //########################################################//
 

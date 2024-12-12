@@ -4,46 +4,30 @@
 //
 //  Created by 김하연 on 12/4/24.
 //
+
 /*
-import SwiftUI
 
-struct AIView: View {
-    var body: some View {
-        VStack {
-            Text("AI 화면")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-           
-        }
-        .navigationBarTitle("AI 화면", displayMode: .inline)
-    }
-}
-
-struct AIView_Previews: PreviewProvider{
-static var previews: some View {
-        AIView()
-    }
-}
+왠지는 모르겠는데 아예 챗봇 화면이 저한테 오른쪽 아래에 모든게 쏠려있어서
+ 위에 로고 - divider 말고 제가 아래 해놓은것처럼  ToplogoView()  불러오고 위치 조정하면 좀 더 편하게 하실 수 있어요!!!  ToplogoView()로 위에 로고랑 선만 정리하면 챗봇 화면은 깔꼼한 것 같슴다
+ 챗봇 텍스트 박스 투명도 0.5 -> 0.2까지 낮춰도 예쁠 것 같아요!
+ 
 */
+
 import SwiftUI
 
 struct ChatBotView: View {
+    
     @Binding var isPresented: Bool  // 모달 닫기 위한 상태 바인딩
     @State private var userInput: String = ""
     @State private var messages: [(String, Bool)] = [] // (메시지, 사용자 여부) 튜플 배열 추가
     @State private var errorMessage: String = "" // 에러 메시지 상태 추가
     
     var body: some View {
-        VStack {
-            Image("Logo")
-                .resizable()
-                .frame(width: 60, height: 60)
-                .padding()
+        VStack{
             
-            Divider()
-                .background(Color.black) // 선 색상을 검정으로 설정
-                .padding(.horizontal)
-            
+            //이렇게 불러오기만 하면 됩니당!!!
+            ToplogoView()
+                //.offset(x:-15,y:-20)
             Spacer()
             
             ScrollView {
@@ -54,13 +38,13 @@ struct ChatBotView: View {
                             Text(message)
                                 .font(.system(size: 14)) // 글씨 크기 조정
                                 .padding()
-                                .background(Color(hex: "#85EAEC")) // 사용자 메시지 배경 색상
+                                .background(Color(red: 133/255, green: 234/255, blue: 236/255)) // 사용자 메시지 배경 색상
                                 .cornerRadius(10)
                                 .foregroundColor(.black) // 텍스트 색상
                         } else {
                             // AI의 메시지 왼쪽 정렬
                             HStack {
-                                Image("codari-logo") // AI의 응답에 로고 추가
+                                Image("PImage") // AI의 응답에 로고 추가
                                     .resizable()
                                     .frame(width: 30, height: 30)
                                     .padding(.trailing, 5) // 로고와 텍스트 간격
@@ -68,7 +52,7 @@ struct ChatBotView: View {
                                 Text(message)
                                     .font(.system(size: 14)) // 글씨 크기 조정
                                     .padding()
-                                    .background(Color(hex: "#F3F3F3")) // 챗봇 메시지 배경 색상
+                                    .background(Color.gray.opacity(0.5)) // 챗봇 메시지 배경 색상
                                     .cornerRadius(10)
                                     .foregroundColor(.black) // 텍스트 색상
                             }
@@ -184,3 +168,9 @@ struct ChatBotView: View {
     }
 }
 
+
+struct ChatBotView_Previews: PreviewProvider{
+static var previews: some View {
+    ChatBotView(isPresented: .constant(true)) // 더미 바인딩 데이터 제공
+    }
+}

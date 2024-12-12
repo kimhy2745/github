@@ -1,3 +1,8 @@
+//++ 각 언어별 도전과제 (총 3개) 달성할 수 있게 해뒀어요!! Mainstudy 확인해주세요!
+// Testst View에서 "테스트 시작하기" 버튼 누르면 도전과제1 달성하게 해두긴 했는데 이것도 혹시 되나 한번만 봐주세요!
+// 혹시 안되면 지금 이 뷰랑 MainStudyView , MyPageView, ProfileSettingView에 도전과제 달성 버튼들 있으니까 참고하시면 될 것 같아요!
+
+
 import SwiftUI
 
 class AppState: ObservableObject {
@@ -10,43 +15,13 @@ class AppState: ObservableObject {
     @Published var hasSentAINotification = false // AI 알림 상태변수
     @Published var hasSentLogoutNotification = false // 로그아웃 알림 상태변수
     @Published var hasStartNotification = false // 메달 알림 상태변수
+    @Published var hasCNotification = false // c언어 알림 상태변수
+    @Published var hasJavaNotification = false // 자바 알림 상태변수
+    @Published var hasPythonNotification = false // 파이썬 알림 상태변수
+
     
     @Published var currentMedals: Int = 0 // 현재 메달 수 상태변수
 }
-
-
-//남은 도전과제 => 7~9 총 3개!! 각자 공부 화면에서 처음 언어 선택했을 때 알람이 뜨고 도전과제 출력되게 하면 됩니당!
-// 1. 위에  AppState에 상태변수 추가하기(3개 다)
-//
-// @Published var hasCNotification = false // c언어 알림 상태변수
-// @Published var hasJavaNotification = false // 자바 알림 상태변수
-// @Published var hasPythonNotification = false // 파이썬 알림 상태변수
-//
-//2. 버튼을 눌렀을 때 알람이 뜰 화면(아마도 MainStudyView인데 그냥 공부 전에 언어 선택하는 뷰에 하시면 됩니당)에
-// @EnvironmentObject var appState: AppState 선언해주기! 상태변수값이 바뀌어야 함
-
-// 아마 제 폴더중에 Funtion 폴더에 알림 기능 함수 있어서 그냥 되긴 할거에요
-// 버튼 액션에  if !appState.conditionMet.contains(3) { // 중복 방지
-//                  appState.conditionMet.append(3) // 조건 추가 ==> 넣어주기! (3) 자리에는 그 버튼 도전과제에 맞는 숫자 넣으면 됩니당
-// C = 7 / java = 8  / python = 9 넣으면 끗
-//
-// if !appState.hasSentLevelNotification {            ===> 얘는 위에 if문이랑 같이 버튼 액션에 넣어주세요
-//      pushNotification(                                   얘는 알람 띄워주고 내용 설정하는 부분입니당
-//          title: "도전과제3 :",                                       (아래 있음!!)
-//          body: "난이도를 바꾸는건 정말 멋진 일이죠!",               각자 타이틀은 "도전과제번호 :" , 바디는 "도전과제내용"
-/*          seconds: 1,                                               identifier는 알람 식별자라 "CNotification"이런식으로
-                                                                                        하면 구분됩니당
-            identifier: "levelNotification"                 그 다음은   appState.hasSentLevelNotification = true인데
-                )                                           이것도 appState.(버튼에 맞는 언어 알림 상태변수) = true로 해주시믄 돼용
-            appState.hasSentLevelNotification = true
-        }
-        navigateToLevel = true}
-
-*/
-
-// Testst View에서 "테스트 시작하기" 버튼 누르면 도전과제1 달성하게 해두긴 했는데 이것도 혹시 되나 한번만 봐주세요!
-// 혹시 안되면 지금 이 뷰랑 MainStudyView , MyPageView, ProfileSettingView에 도전과제 달성 버튼들 있으니까 참고하시면 될 것 같아요!
-
 
 
 struct MedalView: View {

@@ -95,7 +95,11 @@ struct TeststView: View {
                 if !appState.conditionMet.contains(1) { // 중복 방지
                     appState.conditionMet.append(1) // 조건 추가
                 }
-                if !appState.hasSentNoteNotification { // 알림이 한 번만 울리도록 체크
+                // UserDefaults에서 알림 허용 상태 확인
+                    let isNotificationEnabled = UserDefaults.standard.bool(forKey: "isNotificationEnabled")
+                
+                
+                if isNotificationEnabled && !appState.hasSentNoteNotification { // 알림이 한 번만 울리도록 체크
                     pushNotification(
                         title: "도전과제1 :",
                         body: "과연 어떤 레벨을 받을까요?",
